@@ -51,7 +51,7 @@ module.exports = async function(serverID = "") {
 
   // Assets
   let assets = [];
-  
+
   if (gameChannels.assets) {
     const messages = await gameChannels.assets.messages.fetch();
     const ownerMessages = messages.filter((message) => message.author.id === guild.ownerID);

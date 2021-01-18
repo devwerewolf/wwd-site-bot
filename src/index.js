@@ -10,7 +10,10 @@ const { DiscordClient, CommandPrefix } = require("./constants/Discord");
 const { Port } = require("./constants/ServerConfig");
 
 // Fastify routes
-const routes = () => {
+const routes = async () => {
+  await fastify.register(require('middie'));
+  fastify.use(require('cors')());
+
   fastify.get("/", async (request, reply) => {
     return {
       timestamp: new Date(),
@@ -73,8 +76,8 @@ const bot = async () => {
 // Server
 const start = async () => {
   try {
-    routes();
-    bot();
+    await routes();
+    await bot();
     await fastify.listen(Port);
   } catch (err) {
     fastify.log.error(err)
