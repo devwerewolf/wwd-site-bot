@@ -78,9 +78,9 @@ const bot = async () => {
       catch (e) {
         console.log(e, "\n❌: " + message.content);
 
-        switch (e.code) {
-          case "MODULE_NOT_FOUND": return message.channel.send(`Command not recognized: ${commandName}`);
-        }
+        // switch (e.code) {
+        //   case "MODULE_NOT_FOUND": return message.channel.send(`Command not recognized: ${commandName}`);
+        // }
       }
     }
   });
