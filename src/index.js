@@ -32,6 +32,21 @@ const routes = async () => {
 
     return data;
   });
+  
+  fastify.get("/:server64/discord", async (request, reply) => {
+    const { server64 } = request.params;
+    let invite = null;
+    
+    if (server64) {
+      const serverID = decodeToBigInt(server64).toString();
+      const guild = await DiscordClient.guilds.fetch(serverID);
+      const channels = guild.channels.cache;
+      const generalChannel = channels.find((channel) => channel.name === "general");
+      invite = await generalChannel.createInvite();
+    }
+    
+    return invite;
+  })
 }
 
 // Discord bot
