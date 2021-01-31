@@ -25,11 +25,10 @@ module.exports = async function(serverID = "") {
     
     if (channel) {
       const messages = await channel.messages.fetch();
-      const ownerMessages = messages.filter((message) => message.author.id === guild.ownerID);
       const moonMessages = [];
       
-      ownerMessages.forEach((message) => {
-        moonMessages.push(extractCode("moonscript|moon", message.content) + "\n");
+      messages.forEach((message) => {
+        messages.push(extractCode("moonscript|moon", message.content) + "\n");
       });
       
       const fullMoon = moonMessages.reverse().join("\n")
@@ -54,9 +53,8 @@ module.exports = async function(serverID = "") {
 
   if (gameChannels.assets) {
     const messages = await gameChannels.assets.messages.fetch();
-    const ownerMessages = messages.filter((message) => message.author.id === guild.ownerID);
     
-    ownerMessages.forEach((message) => {
+    messages.forEach((message) => {
       // All types...
       const config = yaml.load(extractCode("yaml", message.content));
       const className = config["class name"] || config["class_name"];
