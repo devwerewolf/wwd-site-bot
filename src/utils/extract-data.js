@@ -28,7 +28,7 @@ module.exports = async function(serverID = "") {
       const moonMessages = [];
       
       messages.forEach((message) => {
-        messages.push(extractCode("moonscript|moon", message.content) + "\n");
+        moonMessages.push(extractCode("moonscript|moon", message.content) + "\n");
       });
       
       const fullMoon = moonMessages.reverse().join("\n")
