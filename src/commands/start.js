@@ -39,3 +39,4 @@ module.exports = function({ message }) {
         return `The bot have already created the text channels and the role. For redo a setup, please, delete the role <@&${getRoles().id}>`
     }
   }
+}
